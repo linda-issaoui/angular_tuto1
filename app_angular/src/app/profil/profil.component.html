@@ -1,0 +1,25 @@
+<p>profil works!</p>
+<p> {{getNom}} </p>
+<p> {{getId}} </p>
+<p> {{getContry}} </p>
+<form #formu="ngForm" (ngSubmit)="f(formu)">
+    <input type="text" name="name" placeholder="NOM" required minlength="3" #name="ngModel" ngModel>
+    <br>
+    <div class="alert alert-danger" *ngIf="name.errors?.['required'] && name.touched">
+        champ obligatoire
+    </div>
+    <div class="alert alert-danger" *ngIf="name.errors?.['minlength']">
+        Ce champ accepte min 3 caractéres
+    </div>
+    <input type="text" name="prenom" placeholder="PRENOM" required minlength="4" #prenom="ngModel" ngModel>
+    <br>
+    <div class="alert alert-danger" *ngIf="prenom.errors?.['required'] && prenom.touched">
+        champ obligatoire
+    </div>
+    <div class="alert alert-danger" *ngIf="prenom.errors?.['minlength']">
+        Ce champ accepte min 4 caractéres
+    </div>
+    <input type="number" name="age" placeholder="age" required #age="ngModel" ngModel>
+    <br>
+    <button type="submit" [disabled]="formu.invalid">SUBMIT</button>
+</form>

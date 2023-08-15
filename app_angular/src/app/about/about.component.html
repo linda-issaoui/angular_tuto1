@@ -1,0 +1,32 @@
+<p>about works!</p>
+<p>Formulaire Dynamique avec Méthode Form Builder</p>
+<form [formGroup]="formi" (ngSubmit)="add()">
+    <input type="text" name="name" placeholder="NOM"  formControlName="name" required>
+    <br>
+    <div class="alert alert-danger" *ngIf="formi.get('name').touched && formi.get('name').errors?.['required']">
+        champ obligatoire
+    </div>
+    <div class="alert alert-danger" *ngIf="formi.get('name').errors?.['minlength']">
+        au moins 3 caracteres
+    </div>
+    <input type="text" name="prenom" placeholder="PRENOM"  formControlName="prenom" required>
+    <br>
+    <div class="alert alert-danger" *ngIf="formi.get('prenom').touched && formi.get('prenom').errors?.['required']">
+        champ obligatoire
+    </div>
+    <input type="number" name="age" placeholder="age"  formControlName="age" required>
+    <br>
+    <div class="alert alert-danger" *ngIf="formi.get('age').touched && formi.get('age').errors?.['required']">
+        champ obligatoire
+    </div>
+    <div formArrayName="arrayItems">
+        <div *ngFor="let item of formi.controls.arrayItems['controls']; index as i" [formGroupName]="i">
+            id{{i+1}}<input type="text" name="id"  formControlName="id" >
+            <input type="text" name="cin"  formControlName="cin" >
+            <input type="text" name="rond"  formControlName="rond" >
+            <button (click)="deleteitem(i)">DELETE</button>
+        </div>
+        <button (click)="addnewitem()">ADD</button>
+    </div>
+    <button type="submit" [disabled]="formi.invalid" >SUBMIT</button>
+</form>

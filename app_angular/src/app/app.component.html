@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about">ABOUT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/profil',nom,id,contry]">PROFIL</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<router-outlet></router-outlet>
+<app-home (myEvent)="printData($event)"></app-home>
+<app-home [contrie]="contry"></app-home>
+<input type="text" [(ngModel)]="contry">
+<p>this is FOOTER</p>
